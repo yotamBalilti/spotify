@@ -1,0 +1,67 @@
+import React, { useState, useEffect } from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import Login from "../components/Login/Login";
+import RedirectPage from "../components/HelpPages/RedirectPage";
+import Homepage from "../components/Homepage/Homepage";
+import NotFoundPage from "../components/HelpPages/RedirectPage";
+
+const AppRouter = () => {
+  const [expiryTime, setExpiryTime] = useState("0");
+
+  useEffect(() => {
+    let expiryT;
+    try {
+      expiryT = JSON.parse(localStorage.getItem("expiry_time"));
+    } catch (error) {
+      expiryT = "0";
+    }
+    setExpiryTime(expiryT);
+  }, []);
+
+  const setExpiry = time => {
+    setExpiryTime(time);
+  };
+
+  const isValidSession = () => {
+    const currentTime = new Date().getTime();
+    const expiry = expiryTime;
+    const isSessionValid = currentTime < expiry;
+
+    return isSessionValid;
+  };
+
+  return (
+    <BrowserRouter>
+      <div className="main">
+        <Switch>
+          <Route
+            path="/"
+            exact={true}
+            render={props => (
+              <Login isValidSession={isValidSession} {...props} />
+            )}
+          />
+          <Route
+            path="/redirect"
+            render={props => (
+              <RedirectPage
+                isValidSession={isValidSession}
+                setExpiryTime={setExpiry}
+                {...props}
+              />
+            )}
+          />
+          <Route
+            path="/home"
+            render={props => (
+              <Homepage isValidSession={isValidSession} {...props} />
+            )}
+          />
+          <Route component={NotFoundPage} />
+        </Switch>
+      </div>
+    </BrowserRouter>
+  );
+};
+
+export default AppRouter;
