@@ -3,6 +3,8 @@ import {
   ADD_ALBUMS,
   SET_ARTISTS,
   ADD_ARTISTS,
+  SET_TRACKS,
+  ADD_TRACKS,
   SET_PLAYLIST,
   ADD_PLAYLIST,
 } from "../utils/constants";
@@ -28,6 +30,16 @@ export const addArtists = artists => ({
   artists,
 });
 
+export const setTracks = tracks => ({
+  type: SET_TRACKS,
+  tracks,
+});
+
+export const addTracks = tracks => ({
+  type: ADD_TRACKS,
+  tracks,
+});
+
 export const setPlayList = playlists => ({
   type: SET_PLAYLIST,
   playlists,
@@ -46,9 +58,10 @@ export const initiateGetResult = searchTerm => {
       )}&type=album,playlist,artist,track`;
       const result = await get(API_URL);
       console.log(result);
-      const { albums, artists, playlists } = result;
+      const { albums, artists, playlists, tracks } = result;
       dispatch(setAlbums(albums));
       dispatch(setArtists(artists));
+      dispatch(setTracks(tracks));
       return dispatch(setPlayList(playlists));
     } catch (error) {
       console.log("error", error);
@@ -72,6 +85,16 @@ export const initiateLoadMoreArtists = url => {
     try {
       const result = await get(url);
       return dispatch(addArtists(result.artists));
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+};
+export const initiateLoadMoreTracks = url => {
+  return async dispatch => {
+    try {
+      const result = await get(url);
+      return dispatch(addTracks(result.tracks));
     } catch (error) {
       console.log("error", error);
     }

@@ -9,17 +9,16 @@ import {
   Link,
   CardActions,
 } from "@material-ui/core";
-// import music from "../images/music.jpeg";
+import altImage from "../../images/altImage.jpg";
 import useStyles from "./styles";
-import { Button } from "react-bootstrap";
 import { IoPlay } from "react-icons/io5";
 
 const AlbumsList = ({ albums }) => {
   const classes = useStyles();
   return (
-    <Grid container>
+    <Grid container className={classes.result_container} justify="center">
       {Object.keys(albums).length > 0 && (
-        <Grid item container spacing={2}>
+        <Grid item container spacing={2} justify="center">
           {albums.items.map((album, index) => {
             return (
               <Grid item xs={10} sm={5} md={3} key={index}>
@@ -31,19 +30,14 @@ const AlbumsList = ({ albums }) => {
                     className="card-image-link"
                   >
                     {!_.isEmpty(album.images) ? (
-                      // <Card.Img
-                      //   variant="top"
-                      //   src={album.images[0].url}
-                      //   alt=""
-                      // />
                       <CardMedia
                         className={classes.media}
                         image={album.images[0].url}
                         title={album.name}
                       />
                     ) : (
-                      // <img src={music} alt="" />
-                      <p>IMAGE</p>
+                      <img src={altImage} alt="" />
+                      // <p>IMAGE</p>
                     )}
                   </a>
                   <CardContent className={classes.card_content}>

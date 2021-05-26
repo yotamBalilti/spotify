@@ -5,6 +5,7 @@ import { Redirect } from "react-router-dom";
 import AlbumsList from "./AlbumsList";
 import ArtistsList from "./ArtistsList";
 import PlayList from "./PlayList";
+import TracksList from "./TracksList";
 import { Grid, Button } from "@material-ui/core";
 
 import useStyles from "./styles";
@@ -17,7 +18,7 @@ const Result = props => {
     setCategory,
     selectedCategory,
   } = props;
-  const { albums, artists, playlist } = result;
+  const { albums, artists, playlist, tracks } = result;
   const classes = useStyles();
 
   if (!isValidSession()) {
@@ -35,7 +36,14 @@ const Result = props => {
 
   return (
     <Grid container justify="center">
-      <Grid item container className={classes.result_btns} xs={8} sm={6}>
+      <Grid
+        item
+        container
+        className={classes.result_btns}
+        xs={12}
+        md={8}
+        lg={6}
+      >
         {!_.isEmpty(albums.items) && (
           <Button
             variant="contained"
@@ -63,6 +71,15 @@ const Result = props => {
             PlayLists
           </Button>
         )}
+        {!_.isEmpty(tracks.items) && (
+          <Button
+            variant="contained"
+            color={selectedCategory === "tracks" ? "secondary" : "primary"}
+            onClick={() => setCategory("tracks")}
+          >
+            Tracks
+          </Button>
+        )}
       </Grid>
       <Grid item container xs={12}>
         {selectedCategory === "albums" ? (
@@ -71,6 +88,8 @@ const Result = props => {
           <Grid item>{albums && <ArtistsList artists={artists} />}</Grid>
         ) : selectedCategory === "playlist" ? (
           <Grid item>{albums && <PlayList playlist={playlist} />}</Grid>
+        ) : selectedCategory === "tracks" ? (
+          <Grid item>{tracks && <TracksList tracks={tracks} />}</Grid>
         ) : (
           <></>
         )}

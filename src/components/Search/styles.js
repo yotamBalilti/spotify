@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-export default makeStyles(() => ({
+export default makeStyles(theme => ({
   search: {
     color: "#34eb5a",
     height: "15vh",
@@ -10,8 +10,13 @@ export default makeStyles(() => ({
     width: "100%",
     // border: "1px solid salmon",
   },
-  search_from_title: {
+  search_form_title: {
     paddingBottom: "24px",
+    [theme.breakpoints.down("xs")]: {
+      "& h2": {
+        fontSize: "20px",
+      },
+    },
   },
   search_bar: {},
   TextField: {

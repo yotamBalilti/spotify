@@ -4,6 +4,7 @@ import {
   initiateLoadMoreAlbums,
   initiateLoadMorePlaylist,
   initiateLoadMoreArtists,
+  initiateLoadMoreTracks,
 } from "../../actions/result";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
@@ -54,7 +55,7 @@ const Homepage = props => {
 
   const loadMore = async type => {
     if (isValidSession()) {
-      const { dispatch, albums, artists, playlist } = props;
+      const { dispatch, albums, artists, playlist, tracks } = props;
       setIsLoading(true);
       switch (type) {
         case "albums":
@@ -62,6 +63,9 @@ const Homepage = props => {
           break;
         case "artists":
           await dispatch(initiateLoadMoreArtists(artists.next));
+          break;
+        case "tracks":
+          await dispatch(initiateLoadMoreTracks(tracks.next));
           break;
         case "playlist":
           await dispatch(initiateLoadMorePlaylist(playlist.next));
@@ -83,26 +87,28 @@ const Homepage = props => {
     setSelectedCategory(category);
   };
 
-  const { albums, artists, playlist } = props;
-  const result = { albums, artists, playlist };
+  const { albums, artists, playlist, tracks } = props;
+  const result = { albums, artists, playlist, tracks };
 
   return (
     <ThemeProvider theme={theme}>
       <Grid container justify="center">
         {isValidSession() ? (
-          <Grid item container xs={12} sm={8} md={6}>
+          <Grid item container xs={12} justify="center">
             <Header />
-            <Grid item xs={12}>
+            <Grid item xs={12} sm={8} md={6}>
               <Search handleSearch={handleSearch} />
               {/* <Loader show={isLoading}>Loading...</Loader> */}
             </Grid>
-            <Result
-              result={result}
-              loadMore={loadMore}
-              setCategory={setCategory}
-              selectedCategory={selectedCategory}
-              isValidSession={isValidSession}
-            />
+            <Grid item xs={12} sm={10}>
+              <Result
+                result={result}
+                loadMore={loadMore}
+                setCategory={setCategory}
+                selectedCategory={selectedCategory}
+                isValidSession={isValidSession}
+              />
+            </Grid>
           </Grid>
         ) : (
           <Redirect
@@ -123,6 +129,7 @@ const mapStateToProps = state => {
   return {
     albums: state.albums,
     artists: state.artists,
+    tracks: state.tracks,
     playlist: state.playlist,
   };
 };

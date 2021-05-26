@@ -29,17 +29,17 @@ const Search = props => {
       <Grid item container xs={12} justify="center" alignItems="center">
         <form onSubmit={handleSearch} className={classes.search_form}>
           {errorMsg && <p className="errorMsg">{errorMsg}</p>}
-          <Grid item className={classes.search_from_title}>
+          <Grid item className={classes.search_form_title}>
             <Typography
               component="h2"
               variant="h4"
               align="center"
               color="primary"
             >
-              Enter search term
+              What are you looking for?
             </Typography>
           </Grid>
-          <Grid item container justify="center" spacing={2}>
+          <Grid item container justify="center" alignItems="center" spacing={2}>
             <Grid item xs={8} md={6} className={classes.search_bar}>
               <TextField
                 className={classes.TextField}
