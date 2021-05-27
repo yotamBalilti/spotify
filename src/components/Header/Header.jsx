@@ -12,7 +12,7 @@ const Header = () => {
       className={classes.header}
     >
       <Grid item>
-        <Typography component="h1" variant="h3" color="primary">
+        <Typography component="h1" variant="h1" color="primary">
           SpotiSearch
         </Typography>
       </Grid>

@@ -83,19 +83,22 @@ const Result = props => {
 
   return (
     <Grid container justify="center">
-      <Grid
-        item
-        container
-        className={classes.result_btns}
-        xs={12}
-        sm={10}
-        md={8}
-        lg={4}
-        justify="space-evenly"
-        spacing={1}
-      >
-        <Grid item xs={5} sm={3}>
-          {!_.isEmpty(albums.items) && (
+      {(!_.isEmpty(albums.items) ||
+        !_.isEmpty(artists.items) ||
+        !_.isEmpty(playlist.items) ||
+        !_.isEmpty(tracks.items)) && (
+        <Grid
+          item
+          container
+          className={classes.result_btns}
+          xs={12}
+          sm={10}
+          md={8}
+          lg={4}
+          justify="space-evenly"
+          spacing={1}
+        >
+          <Grid item xs={5} sm={3}>
             <Button
               variant="contained"
               color={selectedCategory === "albums" ? "secondary" : "primary"}
@@ -105,10 +108,8 @@ const Result = props => {
             >
               Albums
             </Button>
-          )}
-        </Grid>
-        <Grid item xs={5} sm={3}>
-          {!_.isEmpty(artists.items) && (
+          </Grid>
+          <Grid item xs={5} sm={3}>
             <Button
               variant="contained"
               color={selectedCategory === "artists" ? "secondary" : "primary"}
@@ -118,10 +119,8 @@ const Result = props => {
             >
               Artists
             </Button>
-          )}
-        </Grid>
-        <Grid item xs={5} sm={3}>
-          {!_.isEmpty(playlist.items) && (
+          </Grid>
+          <Grid item xs={5} sm={3}>
             <Button
               variant="contained"
               color={selectedCategory === "playlist" ? "secondary" : "primary"}
@@ -131,10 +130,8 @@ const Result = props => {
             >
               PlayLists
             </Button>
-          )}
-        </Grid>
-        <Grid item xs={5} sm={3}>
-          {!_.isEmpty(tracks.items) && (
+          </Grid>
+          <Grid item xs={5} sm={3}>
             <Button
               variant="contained"
               color={selectedCategory === "tracks" ? "secondary" : "primary"}
@@ -144,13 +141,8 @@ const Result = props => {
             >
               Tracks
             </Button>
-          )}
-        </Grid>
+          </Grid>
 
-        {(!_.isEmpty(albums.items) ||
-          !_.isEmpty(artists.items) ||
-          !_.isEmpty(playlist.items) ||
-          !_.isEmpty(tracks.items)) && (
           <Grid
             item
             container
@@ -197,8 +189,8 @@ const Result = props => {
               </Button>
             </Grid>
           </Grid>
-        )}
-      </Grid>
+        </Grid>
+      )}
       <Grid item container xs={12}>
         {selectedCategory === "albums" ? (
           <Grid item>{albums && <AlbumsList albums={albums} />}</Grid>

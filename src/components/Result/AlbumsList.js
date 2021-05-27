@@ -18,7 +18,7 @@ const AlbumsList = ({ albums }) => {
   return (
     <Grid container className={classes.result_container} justify="center">
       {Object.keys(albums).length > 0 && (
-        <Grid item container justify="center">
+        <Grid item container spacing={2} justify="center">
           {albums.items.map((album, index) => {
             return (
               <Grid item xs={10} sm={5} md={3} key={index}>
