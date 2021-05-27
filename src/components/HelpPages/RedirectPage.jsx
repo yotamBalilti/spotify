@@ -1,15 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import _ from "lodash";
 import { getParamValues } from "../../utils/functions";
 
-export default class RedirectPage extends React.Component {
-  componentDidMount() {
-    const { setExpiryTime, history, location } = this.props;
+const RedirectPage = props => {
+  useEffect(() => {
+    const { setExpiryTime, history, location } = props;
     try {
       if (_.isEmpty(location.hash)) {
         return history.push("/home");
       }
-
       const access_token = getParamValues(location.hash);
       const expiryTime = new Date().getTime() + access_token.expires_in * 1000;
       localStorage.setItem("params", JSON.stringify(access_token));
@@ -19,9 +18,9 @@ export default class RedirectPage extends React.Component {
     } catch (error) {
       history.push("/");
     }
-  }
+  }, []);
 
-  render() {
-    return null;
-  }
-}
+  return null;
+};
+
+export default RedirectPage;

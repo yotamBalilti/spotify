@@ -1,10 +1,14 @@
 import { makeStyles } from "@material-ui/core/styles";
 
 export default makeStyles(theme => ({
+  result_container: {
+    padding: "12px",
+  },
   result_btns: {
     display: "flex",
     justifyContent: "center",
     padding: "12px",
+    marginTop: "24px",
   },
   result_btn: {},
   result_more: {
@@ -12,11 +16,8 @@ export default makeStyles(theme => ({
   },
   result_card: {
     height: "300px",
-    minWidth: "200px",
+    maxWidth: "400px",
     position: "relative",
-    // [theme.breakpoints.down("md")]: {
-    //   height: "300px",
-    // },
   },
   card_content: {
     paddingTop: "24px",

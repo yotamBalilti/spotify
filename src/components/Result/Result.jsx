@@ -5,7 +5,7 @@ import AlbumsList from "./AlbumsList";
 import ArtistsList from "./ArtistsList";
 import PlayList from "./PlayList";
 import TracksList from "./TracksList";
-import { Grid, Button } from "@material-ui/core";
+import { Grid, Button, Typography } from "@material-ui/core";
 import { FaSortAlphaDown, FaSortAlphaDownAlt } from "react-icons/fa";
 import { BiShuffle } from "react-icons/bi";
 
@@ -58,6 +58,7 @@ const Result = props => {
         return 0;
       });
     } else {
+      setIsLoading(false);
       return category.items.sort(() => Math.random() - 0.5);
     }
   };
@@ -76,7 +77,7 @@ const Result = props => {
   }
 
   return (
-    <Grid container justify="center">
+    <Grid container justify="center" className={classes.result_container}>
       {(!_.isEmpty(albums.items) ||
         !_.isEmpty(artists.items) ||
         !_.isEmpty(playlist.items) ||
@@ -88,7 +89,7 @@ const Result = props => {
           xs={12}
           sm={10}
           md={8}
-          lg={4}
+          lg={6}
           justify="space-evenly"
           spacing={1}
         >
@@ -185,19 +186,23 @@ const Result = props => {
           </Grid>
         </Grid>
       )}
-      <Grid item container xs={12}>
-        {selectedCategory === "albums" ? (
-          <Grid item>{albums && <AlbumsList albums={albums} />}</Grid>
-        ) : selectedCategory === "artists" ? (
-          <Grid item>{artists && <ArtistsList artists={artists} />}</Grid>
-        ) : selectedCategory === "playlist" ? (
-          <Grid item>{playlist && <PlayList playlist={playlist} />}</Grid>
-        ) : selectedCategory === "tracks" ? (
-          <Grid item>{tracks && <TracksList tracks={tracks} />}</Grid>
-        ) : (
-          <></>
-        )}
-      </Grid>
+      {isLoading ? (
+        <Typography color="secondary">Loading...</Typography>
+      ) : (
+        <Grid item container xs={12} justify="center" spacing={2}>
+          {selectedCategory === "albums" ? (
+            <Grid item>{albums && <AlbumsList albums={albums} />}</Grid>
+          ) : selectedCategory === "artists" ? (
+            <Grid item>{artists && <ArtistsList artists={artists} />}</Grid>
+          ) : selectedCategory === "playlist" ? (
+            <Grid item>{playlist && <PlayList playlist={playlist} />}</Grid>
+          ) : selectedCategory === "tracks" ? (
+            <Grid item>{tracks && <TracksList tracks={tracks} />}</Grid>
+          ) : (
+            <></>
+          )}
+        </Grid>
+      )}
       <Grid item container justify="center" className={classes.result_more}>
         {!_.isEmpty(result[selectedCategory]) &&
           !_.isEmpty(result[selectedCategory].next) && (

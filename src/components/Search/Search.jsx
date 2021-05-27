@@ -24,7 +24,7 @@ const Search = props => {
 
   return (
     <Grid container justify="center" className={classes.search}>
-      <Grid item container xs={12} justify="center" alignItems="center">
+      <Grid item container xs={10} justify="center" alignItems="center">
         <form onSubmit={handleSearch} className={classes.search_form}>
           <Grid item className={classes.search_form_title}>
             <Typography
@@ -37,7 +37,7 @@ const Search = props => {
             </Typography>
           </Grid>
           <Grid item container justify="center" alignItems="center" spacing={2}>
-            <Grid item xs={8} md={6} className={classes.search_bar}>
+            <Grid item xs={10} sm={8} md={6} className={classes.search_bar}>
               <TextField
                 className={classes.TextField}
                 type="search"

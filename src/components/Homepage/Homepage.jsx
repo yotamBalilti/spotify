@@ -11,7 +11,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
 import Result from "../Result/Result";
 import Search from "../Search/Search";
-import { Grid } from "@material-ui/core";
+import { Grid, Typography } from "@material-ui/core";
 
 const Homepage = props => {
   const [isLoading, setIsLoading] = useState(false);
@@ -86,15 +86,21 @@ const Homepage = props => {
             <Search handleSearch={handleSearch} />
           </Grid>
           <Grid item xs={12} sm={10}>
-            <Result
-              result={result}
-              loadMore={loadMore}
-              setCategory={setCategory}
-              selectedCategory={selectedCategory}
-              isValidSession={isValidSession}
-              selectedSort={selectedSort}
-              setSelectedSort={setSelectedSort}
-            />
+            {isLoading ? (
+              <Grid item container justify="center">
+                <Typography color="secondary">Loading...</Typography>
+              </Grid>
+            ) : (
+              <Result
+                result={result}
+                loadMore={loadMore}
+                setCategory={setCategory}
+                selectedCategory={selectedCategory}
+                isValidSession={isValidSession}
+                selectedSort={selectedSort}
+                setSelectedSort={setSelectedSort}
+              />
+            )}
           </Grid>
         </Grid>
       ) : (

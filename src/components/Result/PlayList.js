@@ -31,7 +31,6 @@ const PlayList = ({ playlist }) => {
                       {item.name}
                     </Typography>
                     <Typography variant="body2" component="p">
-                      {/* {album.artists.map(artist => artist.name).join(", ")} */}
                       By {item.owner.display_name}
                     </Typography>
                     <Link
