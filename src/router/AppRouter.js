@@ -5,6 +5,23 @@ import RedirectPage from "../components/HelpPages/RedirectPage";
 import Homepage from "../components/Homepage/Homepage";
 import NotFoundPage from "../components/HelpPages/RedirectPage";
 
+import { createMuiTheme } from "@material-ui/core/styles";
+import { ThemeProvider } from "@material-ui/styles";
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#34eb5a",
+    },
+    secondary: {
+      main: "#fa8072",
+    },
+    text: {
+      secondary: "#f8f8f8",
+    },
+  },
+});
+
 const AppRouter = () => {
   const [expiryTime, setExpiryTime] = useState("0");
 
@@ -31,8 +48,9 @@ const AppRouter = () => {
   };
 
   return (
-    <BrowserRouter>
-      <div className="main">
+    <ThemeProvider theme={theme}>
+      <BrowserRouter>
+        {/* <div className="main"> */}
         <Switch>
           <Route
             path="/"
@@ -59,8 +77,9 @@ const AppRouter = () => {
           />
           <Route component={NotFoundPage} />
         </Switch>
-      </div>
-    </BrowserRouter>
+        {/* </div> */}
+      </BrowserRouter>
+    </ThemeProvider>
   );
 };
 

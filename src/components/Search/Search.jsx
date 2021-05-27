@@ -52,6 +52,9 @@ const Search = props => {
                 fullWidth
                 variant="outlined"
                 margin="dense"
+                InputProps={{
+                  className: classes.input,
+                }}
               />
             </Grid>
             <Grid item>

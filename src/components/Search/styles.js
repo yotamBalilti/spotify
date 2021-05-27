@@ -22,4 +22,8 @@ export default makeStyles(theme => ({
   TextField: {
     borderColor: "red",
   },
+  input: {
+    color: "#333",
+    backgroundColor: "#fff",
+  },
 }));

@@ -3,15 +3,18 @@ import { makeStyles } from "@material-ui/core/styles";
 export default makeStyles(() => ({
   result_btns: {
     display: "flex",
-    justifyContent: "space-evenly",
-    padding: "24px",
+    justifyContent: "center",
+    padding: "8px",
   },
-  result_container: {},
+  result_btn: {
+    margin: "4px",
+  },
   result_more: {
     margin: "12px",
   },
   result_card: {
     height: "300px",
+    minWidth: "200px",
     position: "relative",
   },
   card_content: {
@@ -19,7 +22,7 @@ export default makeStyles(() => ({
   },
   media: {
     height: "60%",
-    objectFit: "cover",
+    backgroundSize: "cover",
     position: "relative",
   },
   play: {
