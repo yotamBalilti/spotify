@@ -4,11 +4,14 @@ import Login from "../components/Login/Login";
 import RedirectPage from "../components/HelpPages/RedirectPage";
 import Homepage from "../components/Homepage/Homepage";
 import NotFoundPage from "../components/HelpPages/RedirectPage";
+import Header from "../components/Header/Header";
+import {
+  createMuiTheme,
+  responsiveFontSizes,
+  ThemeProvider,
+} from "@material-ui/core/styles";
 
-import { createMuiTheme } from "@material-ui/core/styles";
-import { ThemeProvider } from "@material-ui/styles";
-
-const theme = createMuiTheme({
+let theme = createMuiTheme({
   palette: {
     primary: {
       main: "#34eb5a",
@@ -21,6 +24,7 @@ const theme = createMuiTheme({
     },
   },
 });
+theme = responsiveFontSizes(theme);
 
 const AppRouter = () => {
   const [expiryTime, setExpiryTime] = useState("0");
@@ -50,7 +54,7 @@ const AppRouter = () => {
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
-        {/* <div className="main"> */}
+        <Header />
         <Switch>
           <Route
             path="/"
@@ -77,7 +81,6 @@ const AppRouter = () => {
           />
           <Route component={NotFoundPage} />
         </Switch>
-        {/* </div> */}
       </BrowserRouter>
     </ThemeProvider>
   );

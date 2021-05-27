@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import {
   initiateGetResult,
   initiateLoadMoreAlbums,
@@ -6,7 +7,6 @@ import {
   initiateLoadMoreArtists,
   initiateLoadMoreTracks,
 } from "../../actions/result";
-import { connect } from "react-redux";
 import { useSelector, useDispatch } from "react-redux";
 
 import { Redirect } from "react-router-dom";
@@ -18,7 +18,9 @@ import { Grid } from "@material-ui/core";
 const Homepage = props => {
   const [isLoading, setIsLoading] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("albums");
+  const [selectedSort, setSelectedSort] = useState("");
   const { isValidSession, history } = props;
+  const [searchResult, setSearchResult] = useState({});
   const albums = useSelector(state => state.albums);
   const artists = useSelector(state => state.artists);
   const tracks = useSelector(state => state.tracks);
@@ -74,6 +76,7 @@ const Homepage = props => {
 
   const setCategory = category => {
     setSelectedCategory(category);
+    setSelectedSort("");
   };
 
   const result = { albums, artists, playlist, tracks };
@@ -82,7 +85,6 @@ const Homepage = props => {
     <Grid container justify="center">
       {isValidSession() ? (
         <Grid item container xs={12} justify="center">
-          <Header />
           <Grid item xs={12} sm={8} md={6}>
             <Search handleSearch={handleSearch} />
             {/* <Loader show={isLoading}>Loading...</Loader> */}
@@ -94,6 +96,8 @@ const Homepage = props => {
               setCategory={setCategory}
               selectedCategory={selectedCategory}
               isValidSession={isValidSession}
+              selectedSort={selectedSort}
+              setSelectedSort={setSelectedSort}
             />
           </Grid>
         </Grid>

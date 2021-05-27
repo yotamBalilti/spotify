@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Grid, TextField, Typography, Button } from "@material-ui/core";
 import useStyles from "./styles";
-// import { Form, Button } from "react-bootstrap";
 
 const Search = props => {
   const classes = useStyles();
@@ -15,7 +14,6 @@ const Search = props => {
 
   const handleSearch = event => {
     event.preventDefault();
-
     if (searchTerm.trim() !== "") {
       setErrorMsg("");
       props.handleSearch(searchTerm);
@@ -28,7 +26,6 @@ const Search = props => {
     <Grid container justify="center" className={classes.search}>
       <Grid item container xs={12} justify="center" alignItems="center">
         <form onSubmit={handleSearch} className={classes.search_form}>
-          {errorMsg && <p className="errorMsg">{errorMsg}</p>}
           <Grid item className={classes.search_form_title}>
             <Typography
               component="h2"
@@ -56,9 +53,19 @@ const Search = props => {
                   className: classes.input,
                 }}
               />
+              {errorMsg && (
+                <Typography component="h3" variant="body2" color="error">
+                  {errorMsg}
+                </Typography>
+              )}
             </Grid>
             <Grid item>
-              <Button variant="contained" type="submit" color="primary">
+              <Button
+                variant="contained"
+                type="submit"
+                color="primary"
+                className={classes.search_btn}
+              >
                 Search
               </Button>
             </Grid>

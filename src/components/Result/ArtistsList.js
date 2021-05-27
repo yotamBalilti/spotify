@@ -39,6 +39,8 @@ const ArtistsList = ({ artists }) => {
                       href={artist.external_urls.spotify}
                       className={classes.play}
                       title="Click to Play"
+                      rel="noopener noreferrer"
+                      target="_blank"
                     >
                       <IoPlay />
                     </Link>

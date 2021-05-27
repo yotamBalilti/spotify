@@ -1,4 +1,4 @@
-import { SET_ARTISTS, ADD_ARTISTS } from '../utils/constants';
+import { SET_ARTISTS, ADD_ARTISTS } from "../utils/constants";
 
 const artistsReducer = (state = {}, action) => {
   const { artists } = action;
@@ -9,7 +9,7 @@ const artistsReducer = (state = {}, action) => {
       return {
         ...state,
         next: artists.next,
-        items: [...state.items, ...artists.items]
+        items: [...state.items, ...artists.items],
       };
     default:
       return state;

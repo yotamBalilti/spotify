@@ -28,7 +28,6 @@ const Login = props => {
         <Redirect to="/home" />
       ) : (
         <Grid item container justify="center">
-          <Header />
           {sessionExpired && (
             <Grid item container direction="column" alignItems="center">
               <Typography

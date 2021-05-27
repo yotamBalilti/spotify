@@ -9,7 +9,7 @@ import {
   Link,
   CardActions,
 } from "@material-ui/core";
-// import music from "../images/music.jpeg";
+import altImage from "../../images/altImage.jpg";
 import useStyles from "./styles";
 import { IoPlay } from "react-icons/io5";
 
@@ -23,23 +23,11 @@ const PlayList = ({ playlist }) => {
             return (
               <Grid item xs={10} sm={5} md={3} key={index}>
                 <Card className={classes.result_card}>
-                  <a
-                    target="_blank"
-                    href={item.external_urls.spotify}
-                    rel="noopener noreferrer"
-                    className="card-image-link"
-                  >
-                    {!_.isEmpty(item.images) ? (
-                      <CardMedia
-                        className={classes.media}
-                        image={item.images[0].url}
-                        title={item.name}
-                      />
-                    ) : (
-                      // <img src={music} alt="" />
-                      <p>IMAGE</p>
-                    )}
-                  </a>
+                  <CardMedia
+                    className={classes.media}
+                    image={item.images[0] ? item.images[0].url : altImage}
+                    title={item.name}
+                  />
                   <CardContent className={classes.card_content}>
                     <Typography variant="button" component="h4">
                       {item.name}
@@ -52,6 +40,8 @@ const PlayList = ({ playlist }) => {
                       href={item.external_urls.spotify}
                       className={classes.play}
                       title="Click to Play"
+                      rel="noopener noreferrer"
+                      target="_blank"
                     >
                       <IoPlay />
                     </Link>

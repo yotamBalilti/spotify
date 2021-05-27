@@ -1,14 +1,12 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-export default makeStyles(() => ({
+export default makeStyles(theme => ({
   result_btns: {
     display: "flex",
     justifyContent: "center",
-    padding: "8px",
+    padding: "12px",
   },
-  result_btn: {
-    margin: "4px",
-  },
+  result_btn: {},
   result_more: {
     margin: "12px",
   },
@@ -16,9 +14,23 @@ export default makeStyles(() => ({
     height: "300px",
     minWidth: "200px",
     position: "relative",
+    // [theme.breakpoints.down("md")]: {
+    //   height: "300px",
+    // },
   },
   card_content: {
     paddingTop: "24px",
+    "& p": {
+      display: "-webkit-box",
+      WebkitLineClamp: "2",
+      WebkitBoxOrient: "vertical",
+      overflow: "hidden",
+    },
+    "& h4": {
+      whiteSpace: "nowrap",
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+    },
   },
   media: {
     height: "60%",

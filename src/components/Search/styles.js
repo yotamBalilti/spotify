@@ -12,13 +12,14 @@ export default makeStyles(theme => ({
   },
   search_form_title: {
     paddingBottom: "24px",
-    [theme.breakpoints.down("xs")]: {
-      "& h2": {
-        fontSize: "20px",
-      },
-    },
+    // [theme.breakpoints.down("xs")]: {
+    //   "& h2": {
+    //     fontSize: "20px",
+    //   },
+    // },
   },
   search_bar: {},
+  search_btn: {},
   TextField: {
     borderColor: "red",
   },
