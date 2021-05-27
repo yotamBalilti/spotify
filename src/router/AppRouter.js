@@ -28,19 +28,6 @@ let theme = createMuiTheme({
     h1: {
       fontFamily: "Pattaya",
     },
-    fontFamily: [
-      "-apple-system",
-      "BlinkMacSystemFont",
-      '"Segoe UI"',
-      "Roboto",
-      '"Helvetica Neue"',
-      "Arial",
-      "sans-serif",
-      '"Apple Color Emoji"',
-      '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"',
-      '"Pattaya"',
-    ].join(","),
   },
 });
 theme = responsiveFontSizes(theme);

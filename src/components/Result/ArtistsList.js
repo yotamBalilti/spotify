@@ -1,5 +1,4 @@
 import React from "react";
-import _ from "lodash";
 import {
   Grid,
   Card,
@@ -7,7 +6,6 @@ import {
   CardContent,
   CardMedia,
   Link,
-  CardActions,
 } from "@material-ui/core";
 import altImage from "../../images/altImage.jpg";
 import useStyles from "./styles";

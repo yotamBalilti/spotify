@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { setArtists } from "../../actions/result";
-import { useDispatch } from "react-redux";
+import React, { useState } from "react";
 import _ from "lodash";
 import { Redirect } from "react-router-dom";
 import AlbumsList from "./AlbumsList";
@@ -26,10 +24,6 @@ const Result = props => {
   const { albums, artists, playlist, tracks } = result;
   const classes = useStyles();
   const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {}, [isLoading]);
-
-  const dispatch = useDispatch();
 
   const setCategoryToSort = () => {
     switch (selectedCategory) {

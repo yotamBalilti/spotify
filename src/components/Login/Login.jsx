@@ -1,5 +1,4 @@
-import React, { Fragment } from "react";
-import Header from "../Header/Header";
+import React from "react";
 import { Redirect } from "react-router-dom";
 import { Grid, Button, Typography } from "@material-ui/core";
 import useStyles from "./styles";

@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 import {
   initiateGetResult,
   initiateLoadMoreAlbums,
@@ -12,7 +11,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
 import Result from "../Result/Result";
 import Search from "../Search/Search";
-import Header from "../Header/Header";
 import { Grid } from "@material-ui/core";
 
 const Homepage = props => {
@@ -20,7 +18,6 @@ const Homepage = props => {
   const [selectedCategory, setSelectedCategory] = useState("albums");
   const [selectedSort, setSelectedSort] = useState("");
   const { isValidSession, history } = props;
-  const [searchResult, setSearchResult] = useState({});
   const albums = useSelector(state => state.albums);
   const artists = useSelector(state => state.artists);
   const tracks = useSelector(state => state.tracks);
@@ -87,7 +84,6 @@ const Homepage = props => {
         <Grid item container xs={12} justify="center">
           <Grid item xs={12} sm={8} md={6}>
             <Search handleSearch={handleSearch} />
-            {/* <Loader show={isLoading}>Loading...</Loader> */}
           </Grid>
           <Grid item xs={12} sm={10}>
             <Result
